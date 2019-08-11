@@ -34,3 +34,4 @@
 ..\obj\show.o: E:\MDK5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\show.o: ..\HARDWARE\REMOTE\remote.h
 ..\obj\show.o: ..\SYSTEM\delay\delay.h
+..\obj\show.o: ..\HARDWARE\myprintf\myprintf.h

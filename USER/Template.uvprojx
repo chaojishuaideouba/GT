@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE\LCD;..\HARDWARE\REMOTE;..\HARDWARE\SHOW;..\HARDWARE\STMFLASH;..\HARDWARE\TIMER</IncludePath>
+              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE\LCD;..\HARDWARE\REMOTE;..\HARDWARE\SHOW;..\HARDWARE\STMFLASH;..\HARDWARE\TIMER;..\HARDWARE\myprintf</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -617,6 +617,11 @@
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\TIMER\timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>myprintf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\myprintf\myprintf.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -2,6 +2,7 @@
 #include "remote.h"
 #include "delay.h"
 #include "stdlib.h"
+#include "myprintf.h"
 
  
  #define FLASH_SAVE_ADDR  0X08070000	
@@ -170,21 +171,38 @@ void targetspeed(void)
 void lcdshow(void)
 {
 	
-	 LCD_ShowString(30,50,200,16,16,"Proportion:");
-	 LCD_ShowString(30,70,200,16,16,"Integration:");	
-	 LCD_ShowString(30,90,200,16,16,"Differentiation:");
-  	LCD_ShowString(30,120,200,16,16,"angle");
-   LCD_ShowString(30,200,200,16,16,"Target_speed:");
-	 LCD_ShowString(30,240,200,16,16,"speed:");	
+	 //LCD_ShowString(30,50,200,16,16,"Proportion:");
+	 setx(30);
+	 sety(50);
+	myprintf("%s","Proportion:");
+	// LCD_ShowString(30,70,200,16,16,"Integration:");	
+	 sety(70);
+	myprintf("%s","Integration:");
+	// LCD_ShowString(30,90,200,16,16,"Differentiation:");
+	 sety(90);
+	myprintf("%s","Differentiation:");	
+  	//LCD_ShowString(30,120,200,16,16,"angle");
+	 sety(120);
+	myprintf("%s","angle:");	
+  // LCD_ShowString(30,200,200,16,16,"Target_speed:");
+	 sety(200);
+	myprintf("%s","Target_speed:");		
+	// LCD_ShowString(30,240,200,16,16,"speed:");	
+	 sety(240);
+	myprintf("%s","speed:");
 	 POINT_COLOR=GREEN;
 	 LCD_DrawRectangle(20, 360, 478, 500);	
 	 POINT_COLOR=RED;
-	 LCD_ShowNum(0,500,0,3,16);
-	 LCD_ShowNum(0,430,60,3,16);
-	LCD_ShowNum(0,370,120,3,16);
-	LCD_ShowString(300,90,200,16,16,dstrlcd);
-	LCD_ShowString(300,70,200,16,16,istrlcd);
-  LCD_ShowString(360,50,200,16,16,p1);
+	// LCD_ShowNum(0,500,0,3,16);
+	 setx(0);
+	 sety(490);
+	myprintf("%d",0);
+	 //LCD_ShowNum(0,430,60,3,16);
+	 	 sety(430);
+	myprintf("%d",60);
+	//LCD_ShowNum(0,370,120,3,16);
+	 	 sety(370);
+	myprintf("%d",120);
 }
 
 
@@ -198,7 +216,6 @@ void angle(void)
 	do
 	{
 		key=Remote_Scan();	
-		LCD_ShowString(30,120,200,16,16,"angle");
 			switch(key)
 			{		   	    
 				case 2:index=0;break;		 	  	   

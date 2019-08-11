@@ -5,6 +5,7 @@
 #include "show.h"
 #include "timer.h"
 #include "stmflash.h"
+#include "myprintf.h"
  
  
  #define FLASH_SAVE_ADDR  0X08070000	
@@ -58,14 +59,6 @@ int Position_PID (int Encoder,int Target);
 	LCD_Init();	
 	 
 	 
-	 LCD_ShowNum(300,50,Position_KP,3,16);
-	 LCD_ShowString(300,70,200,16,16,"0.001");
-	 LCD_ShowString(300,90,200,16,16,"0.01");
-	 LCD_ShowString(150,120,200,16,16,"CLOSE");
-	 
-	 
-	 
-	 
 	 STMFLASH_Read(FLASH_SAVE_ADDR,(u16*)datatemp,10);
 	 num = atof(datatemp);
 	 Target_speed = num;
@@ -75,11 +68,13 @@ int Position_PID (int Encoder,int Target);
 	 Position_KP = num;
 	 LCD_Fill(250,45,480,65,WHITE);
 	 LCD_ShowString(300,50,200,16,16,datatemp);
+
 	 	STMFLASH_Read(FLASH_SAVE_ADDR2,(u16*)datatemp,10);
 	 num = atof(datatemp);
 	 Position_KI = num;
 	 LCD_Fill(250,65,480,85,WHITE);
 	 LCD_ShowString(300,70,200,16,16,datatemp);
+
 	 
 	STMFLASH_Read(FLASH_SAVE_ADDR3,(u16*)datatemp,10);
 	 num = atof(datatemp);
@@ -106,7 +101,7 @@ int Position_PID (int Encoder,int Target);
   			
 			switch(key)
 			{
-				case 162:stand = 0;LCD_ShowString(150,120,200,16,16,"CLOSE");break;
+				case 162:stand = 0;setx(150);sety(120);myprintf("%s","close");break;//LCD_ShowString(150,120,200,16,16,"CLOSE");break;
 				case 0:str="ERROR";break;			       
 				case 98:str="UP";PSelect();Position_KP = num;break;	    
 				case 2:str="PLAY";break;		 
@@ -125,7 +120,11 @@ int Position_PID (int Encoder,int Target);
       
 			Target_speed = 60;
 			aa = buffer*21/360;
-			LCD_ShowNum(350,200,buffer,3,16);
+			setx(350);
+			sety(200);
+			myprintf("%d",buffer);
+			//LCD_ShowNum(350,200,buffer,3,16);
+			LCD_Fill(250,195,480,220,WHITE);
 			if(i>=aa+1)
 			{
 				TIM_SetCompare2(TIM3,0);
@@ -133,9 +132,8 @@ int Position_PID (int Encoder,int Target);
 				delay_ms(1000);
 				delay_ms(1000);
 				delay_ms(1000);
-			}
-			
-			
+				LCD_Fill(250,195,480,220,WHITE);
+			}	
 			
 		}
 		speed3=speed2;	
@@ -144,8 +142,11 @@ int Position_PID (int Encoder,int Target);
 		speed=(speed1+speed3+speed2)/3;		
 		pwm=pwm-Position_PID(speed,Target_speed);              //===位置PID控制器         	
 		TIM_SetCompare2(TIM3,pwm);		  // 设定值在0-899之间，分别对应占空比0-100%	
-		lcdshow();
-		LCD_ShowNum(150,200,Target_speed,3,16);	
+		lcdshow();		
+		setx(150);
+		sety(200);
+		myprintf("%d",Target_speed);
+	//	LCD_ShowNum(150,200,Target_speed,3,16);	
  		LCD_ShowNum(150,240,speed,3,16);	
 		if(DrawPointX == 480)
 		{

@@ -38,3 +38,4 @@
 ..\obj\main.o: E:\MDK5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\main.o: ..\HARDWARE\TIMER\timer.h
 ..\obj\main.o: ..\HARDWARE\STMFLASH\stmflash.h
+..\obj\main.o: ..\HARDWARE\myprintf\myprintf.h
