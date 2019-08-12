@@ -67,7 +67,10 @@ int Position_PID (int Encoder,int Target);
 	 num = atof(datatemp);
 	 Position_KP = num;
 	 LCD_Fill(250,45,480,65,WHITE);
-	 LCD_ShowString(300,50,200,16,16,datatemp);
+	// LCD_ShowString(300,50,200,16,16,datatemp);
+	 setx(300);
+	 sety(50);
+	 myprintf("%s",datatemp);
 
 	 	STMFLASH_Read(FLASH_SAVE_ADDR2,(u16*)datatemp,10);
 	 num = atof(datatemp);
