@@ -50,14 +50,16 @@ int Position_PID (int Encoder,int Target);
 	 u8 keyboard;
 	u8 t=0;	
  	u8 *str=0;
-
+ 
  
 	 
 	delay_init();	    	 //延时函数初始化	  
   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级
 	uart_init(115200);	 	//串口初始化为115200
 	LCD_Init();	
-	 
+	 setx(150);
+	 sety(120);
+	 myprintf("%s","close");
 	 
 	 STMFLASH_Read(FLASH_SAVE_ADDR,(u16*)datatemp,10);
 	 num = atof(datatemp);
@@ -172,6 +174,7 @@ int Position_PID (int Encoder,int Target);
 					stand = 0;
 				Target_speed = num;
 				STMFLASH_Write(FLASH_SAVE_ADDR,(u16*)USART_RX_BUF,10);
+					LCD_Fill(140,195,480,220,WHITE);
 				}
 				else if(USART_RX_BUF[t]=='a')
 				{
